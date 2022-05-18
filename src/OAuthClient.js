@@ -525,9 +525,9 @@ OAuthClient.prototype.getTokenRequest = function getTokenRequest(request) {
     .then((response) => {
       authResponse.processResponse(response);
 
-      const error = response?.body;
+      let error = response?.body;
       try {
-        error = JSON.parse(response.body).error;
+        error = JSON.parse(response).error;
       } catch (e) {}
       if (!authResponse.valid()) throw new Error(`Response has an Error: ${error}`);
 
