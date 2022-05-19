@@ -529,7 +529,10 @@ OAuthClient.prototype.getTokenRequest = function getTokenRequest(request) {
       try {
         error = JSON.parse(response).error;
       } catch (e) {}
-      if (!authResponse.valid()) throw new Error(`Response has an Error: ${error}`);
+      if (!authResponse.valid()) {
+        console.error(JSON.stringify(response.body, null, 2))
+        throw new Error(`Response has an Error: ${error}`);;
+      }
 
       return authResponse;
     })
